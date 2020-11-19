@@ -1,36 +1,71 @@
 package defaults
 
-func Int8(value, defaultValue int8) int8 {
-	if value == 0 {
-		return defaultValue
+func Int8(first int8, others ...int8) int8 {
+	if first != 0 {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != 0 {
+			return o
+		}
+	}
+
+	return 0
 }
 
-func Int16(value, defaultValue int16) int16 {
-	if value == 0 {
-		return defaultValue
+func Int16(first int16, others ...int16) int16 {
+	if first != 0 {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != 0 {
+			return o
+		}
+	}
+
+	return 0
 }
 
-func Int32(value, defaultValue int32) int32 {
-	if value == 0 {
-		return defaultValue
+func Int32(first int32, others ...int32) int32 {
+	if first != 0 {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != 0 {
+			return o
+		}
+	}
+
+	return 0
 }
 
-func Int64(value, defaultValue int64) int64 {
-	if value == 0 {
-		return defaultValue
+func Int64(first int64, others ...int64) int64 {
+	if first != 0 {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != 0 {
+			return o
+		}
+	}
+
+	return 0
 }
 
-func Int(value, defaultValue int) int {
-	if value == 0 {
-		return defaultValue
+func Int(first int, others ...int) int {
+	if first != 0 {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != 0 {
+			return o
+		}
+	}
+
+	return 0
 }
