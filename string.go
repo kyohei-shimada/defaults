@@ -1,8 +1,15 @@
 package defaults
 
-func String(value, defaultValue string) string {
-	if value == "" {
-		return defaultValue
+func String(first string, others ...string) string {
+	if first != "" {
+		return first
 	}
-	return value
+
+	for _, o := range others {
+		if o != "" {
+			return o
+		}
+	}
+
+	return ""
 }

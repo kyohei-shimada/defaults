@@ -4,8 +4,8 @@ import "testing"
 
 func TestInt8(t *testing.T) {
 	type args struct {
-		value        int8
-		defaultValue int8
+		first  int8
+		others []int8
 	}
 	tests := []struct {
 		name string
@@ -13,19 +13,29 @@ func TestInt8(t *testing.T) {
 		want int8
 	}{
 		{
-			name: "When 'value' is 0",
-			args: args{value: 0, defaultValue: 100},
-			want: 100,
+			name: "When arguments have a zero, return zero",
+			args: args{first: 0, others: []int8{}},
+			want: 0,
 		},
 		{
-			name: "When 'value' is not 0",
-			args: args{value: -123, defaultValue: 100},
-			want: -123,
+			name: "When arguments have a non-zero, return first value",
+			args: args{first: 123, others: []int8{}},
+			want: 123,
+		},
+		{
+			name: "When arguments have 2 values or more and all of 'values' are 0, return 0",
+			args: args{first: 0, others: []int8{0, 0, 0, 0}},
+			want: 0,
+		},
+		{
+			name: "When arguments have 2 values or more and 'values' include non-zero, return first non-zero value",
+			args: args{first: 0, others: []int8{0, 3, 1, 0}},
+			want: 3,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Int8(tt.args.value, tt.args.defaultValue); got != tt.want {
+			if got := Int8(tt.args.first, tt.args.others...); got != tt.want {
 				t.Errorf("Int8() = %v, want %v", got, tt.want)
 			}
 		})
@@ -34,8 +44,8 @@ func TestInt8(t *testing.T) {
 
 func TestInt16(t *testing.T) {
 	type args struct {
-		value        int16
-		defaultValue int16
+		first  int16
+		others []int16
 	}
 	tests := []struct {
 		name string
@@ -43,19 +53,29 @@ func TestInt16(t *testing.T) {
 		want int16
 	}{
 		{
-			name: "When 'value' is 0",
-			args: args{value: 0, defaultValue: 1000},
-			want: 1000,
+			name: "When arguments have a zero, return zero",
+			args: args{first: 0, others: []int16{}},
+			want: 0,
 		},
 		{
-			name: "When 'value' is not 0",
-			args: args{value: -12345, defaultValue: 100},
-			want: -12345,
+			name: "When arguments have a non-zero, return first value",
+			args: args{first: 123, others: []int16{}},
+			want: 123,
+		},
+		{
+			name: "When arguments have 2 values or more and all of 'values' are 0, return 0",
+			args: args{first: 0, others: []int16{0, 0, 0, 0}},
+			want: 0,
+		},
+		{
+			name: "When arguments have 2 values or more and 'values' include non-zero, return first non-zero value",
+			args: args{first: 0, others: []int16{0, 3, 1, 0}},
+			want: 3,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Int16(tt.args.value, tt.args.defaultValue); got != tt.want {
+			if got := Int16(tt.args.first, tt.args.others...); got != tt.want {
 				t.Errorf("Int16() = %v, want %v", got, tt.want)
 			}
 		})
@@ -64,8 +84,8 @@ func TestInt16(t *testing.T) {
 
 func TestInt32(t *testing.T) {
 	type args struct {
-		value        int32
-		defaultValue int32
+		first  int32
+		others []int32
 	}
 	tests := []struct {
 		name string
@@ -73,19 +93,29 @@ func TestInt32(t *testing.T) {
 		want int32
 	}{
 		{
-			name: "When 'value' is 0",
-			args: args{value: 0, defaultValue: 100000},
-			want: 100000,
+			name: "When arguments have a zero, return zero",
+			args: args{first: 0, others: []int32{}},
+			want: 0,
 		},
 		{
-			name: "When 'value' is not 0",
-			args: args{value: -100000, defaultValue: 100},
-			want: -100000,
+			name: "When arguments have a non-zero, return first value",
+			args: args{first: 123, others: []int32{}},
+			want: 123,
+		},
+		{
+			name: "When arguments have 2 values or more and all of 'values' are 0, return 0",
+			args: args{first: 0, others: []int32{0, 0, 0, 0}},
+			want: 0,
+		},
+		{
+			name: "When arguments have 2 values or more and 'values' include non-zero, return first non-zero value",
+			args: args{first: 0, others: []int32{0, 3, 1, 0}},
+			want: 3,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Int32(tt.args.value, tt.args.defaultValue); got != tt.want {
+			if got := Int32(tt.args.first, tt.args.others...); got != tt.want {
 				t.Errorf("Int32() = %v, want %v", got, tt.want)
 			}
 		})
@@ -94,8 +124,8 @@ func TestInt32(t *testing.T) {
 
 func TestInt64(t *testing.T) {
 	type args struct {
-		value        int64
-		defaultValue int64
+		first  int64
+		others []int64
 	}
 	tests := []struct {
 		name string
@@ -103,19 +133,29 @@ func TestInt64(t *testing.T) {
 		want int64
 	}{
 		{
-			name: "When 'value' is 0",
-			args: args{value: 0, defaultValue: 0x7000000000000000},
-			want: 0x7000000000000000,
+			name: "When arguments have a zero, return zero",
+			args: args{first: 0, others: []int64{}},
+			want: 0,
 		},
 		{
-			name: "When 'value' is not 0",
-			args: args{value: -1234567890, defaultValue: 0x6000000000000000},
-			want: -1234567890,
+			name: "When arguments have a non-zero, return first value",
+			args: args{first: 123, others: []int64{}},
+			want: 123,
+		},
+		{
+			name: "When arguments have 2 values or more and all of 'values' are 0, return 0",
+			args: args{first: 0, others: []int64{0, 0, 0, 0}},
+			want: 0,
+		},
+		{
+			name: "When arguments have 2 values or more and 'values' include non-zero, return first non-zero value",
+			args: args{first: 0, others: []int64{0, 3, 1, 0}},
+			want: 3,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Int64(tt.args.value, tt.args.defaultValue); got != tt.want {
+			if got := Int64(tt.args.first, tt.args.others...); got != tt.want {
 				t.Errorf("Int64() = %v, want %v", got, tt.want)
 			}
 		})
@@ -124,8 +164,8 @@ func TestInt64(t *testing.T) {
 
 func TestInt(t *testing.T) {
 	type args struct {
-		value        int
-		defaultValue int
+		first  int
+		others []int
 	}
 	tests := []struct {
 		name string
@@ -133,19 +173,29 @@ func TestInt(t *testing.T) {
 		want int
 	}{
 		{
-			name: "When 'value' is 0",
-			args: args{value: 0, defaultValue: 12345678},
-			want: 12345678,
+			name: "When arguments have a zero, return zero",
+			args: args{first: 0, others: []int{}},
+			want: 0,
 		},
 		{
-			name: "When 'value' is not 0",
-			args: args{value: -12345678, defaultValue: 12345678},
-			want: -12345678,
+			name: "When arguments have a non-zero, return first value",
+			args: args{first: 123, others: []int{}},
+			want: 123,
+		},
+		{
+			name: "When arguments have 2 values or more and all of 'values' are 0, return 0",
+			args: args{first: 0, others: []int{0, 0, 0, 0}},
+			want: 0,
+		},
+		{
+			name: "When arguments have 2 values or more and 'values' include non-zero, return first non-zero value",
+			args: args{first: 0, others: []int{0, 3, 1, 0}},
+			want: 3,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Int(tt.args.value, tt.args.defaultValue); got != tt.want {
+			if got := Int(tt.args.first, tt.args.others...); got != tt.want {
 				t.Errorf("Int() = %v, want %v", got, tt.want)
 			}
 		})
